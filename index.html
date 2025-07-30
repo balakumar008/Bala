@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  <center>
+    <div>
+    <h1>LOGIN FORM</h1>
+    <input type="email" id="input1" placeholder="Enter your Email id">
+     <input type="password" id="input2" placeholder="Create a password "><br>
+     <pre>Check your password</pre>
+     <input type="radio" id="input3" onclick="bala()"></input><br>
+     <button onclick="bala2()"><a href="bala.html">LOGIN</a></button>
+
+     </div>
+  </center>
+  <style>
+  html{
+    height:40cm;
+    width:auto;
+    margin:0px;
+    padding: 0px;
+    background-size: 70cm;
+    background-image: url(login.gif);
+    background-repeat: no-repeat;
+  }
+    div{
+      width:9cm;
+      height:8cm;
+      border-radius: 0.5cm;
+      background-color: rgba(25,25,25,0.2 );
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      
+    }
+    h1{
+      font-size:1cm;
+      animation:bala infinite 3s ;
+    transition-duration: 1s;
+}
+@keyframes bala
+{
+    0%{
+        color:red;
+    }
+    25% {
+    color: blueviolet;
+    }
+    50% {
+    color: lightsalmon;
+    }
+    75% {
+    color: whitesmoke;
+    }
+    100% {
+    color: brown;
+    }
+}
+#input1{
+  width:6cm;
+  height:1cm;
+  background-color: black;
+  color:white;
+  border-radius: 0.5cm;
+}
+#input2 {
+  width: 6cm;
+  height: 1cm;
+  margin-top:1cm;
+  background-color: black;
+  color: white;
+  border-radius: 0.5cm;
+}
+button{
+  width:4cm;
+  height:1cm;
+  margin-top:0.8cm;
+  border-radius: 0.5cm;
+  background-color: black;
+  color:white;
+}
+#input1:hover{
+ background-color:royalblue;
+ color:black;
+}
+#input2:hover {
+  background-color: royalblue;
+  color: black;
+}
+button:hover{
+  background-color: blueviolet;
+  color:black;
+}
+pre{
+  color:red;
+  font-size:0.5cm;
+}
+
+  </style>
+  <script>
+  function bala()
+  {
+    var a=document.getElementById('input2').value;
+    window.confirm(a);
+  }
+  function bala2()
+  {
+    var b=document.getElementById('input1').value
+    var c=document.getElementById('input2').value;
+    if(b!='') 
+    {
+      if(c!=''){
+      alert('Your Email Id and Password was Saved')
+      }
+    }
+  }
+  </script>
+</body>
+
+</html>

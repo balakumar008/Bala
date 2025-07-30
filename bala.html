@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+      
+    <center>
+        <div id="div1">
+    <div class="div2">
+        <h1>To-Do List</h1>
+        <input type="text" id="input" placeholder="Enter task"><br>
+        <button id="add-btn">Add</button>
+        <ul id="todo-list"></ul>
+    </div></center>
+    </div>
+<style>
+#div1{
+        margin:0px;
+        width:25cm;
+        height:40cm;
+        background-size: 90cm;
+        background-repeat: no-repeat;
+        background-image: url(backgroundgif.gif);
+}
+h1{
+    font-size:1cm;
+    animation:bala infinite 3s ;
+    transition-duration: 1s;
+}
+@keyframes bala
+{
+    0%{
+        color:red;
+    }
+    25% {
+    color: blueviolet;
+    }
+    50% {
+    color: lightsalmon;
+    }
+    75% {
+    color: whitesmoke;
+    }
+    100% {
+    color: brown;
+    }
+}
+.div2 {
+    max-width: 400px;
+    margin: 0px;
+    background-color: rgba(25,25,25,0.2 );
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+}
+input {
+    height:1cm;
+    width:8cm;
+    font-size:0.6cm;
+    border-radius: 0.3cm;
+    background-color: lightblue;
+    color:black;
+}
+input:hover{
+    background-color: black;
+    color:white;
+}
+#add-btn{
+    margin-top:0.5cm;
+    width:4cm;
+    height:0.8cm;
+    background-color: black;
+    color:white;
+    border-style:dashed;
+    border-width:0.1cm;
+    border-color:white;
+    border-radius: 0.2cm;
+}
+#add-btn:hover{
+    background-color: royalblue;
+    color:darkred;
+    border-style:solid;
+    border-width:0.1cm;
+    border-color:black;
+    border-radius: 0.2cm;
+    
+}
+#todo-list li {
+    margin-top: 10px;
+    color:white;
+    font-size:1cm;
+    border-bottom: 1px solid red;
+}
+
+#todo-list li:last-child {
+    border-bottom: none;
+    background-color: blue;
+    border-radius: 0.5cm;
+}
+
+#todo-list li span {
+    cursor: pointer;
+}
+.completed {
+    text-decoration: line-through;
+}
+
+</style>
+
+
+    <script src="script.js">
+        const todoInput = document.getElementById('input');
+const addBtn = document.getElementById('add-btn');
+const todoList = document.getElementById('todo-list');
+
+let todos = [];
+
+addBtn.addEventListener('click', addTodo);
+
+function addTodo() {
+    const todoText = todoInput.value.trim();
+    if (todoText !== '') {
+        const todo = {
+            text: todoText,
+            completed: false
+        };
+        todos.push(todo);
+        renderTodos();
+        todoInput.value = '';
+    }
+}
+
+function renderTodos() {
+    todoList.innerHTML = '';
+    todos.forEach((todo, index) => {
+        const li = document.createElement('li');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = todo.completed;
+        checkbox.addEventListener('change', () => toggleCompleted(index));
+        const span = document.createElement('span');
+        span.textContent = todo.text;
+        span.addEventListener('click', () => toggleCompleted(index));
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.addEventListener('click', () => deleteTodo(index));
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
+        if (todo.completed) {
+            li.classList.add('completed');
+        }
+        todoList.appendChild(li);
+    });
+}
+
+function toggleCompleted(index) {
+    todos[index].completed = !todos[index].completed;
+    renderTodos();
+}
+
+function deleteTodo(index) {
+    todos.splice(index, 1);
+    renderTodos();
+}
+    </script>
+</body>
+</html>
